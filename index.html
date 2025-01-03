@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz with Immediate Feedback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .question {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .question p {
+            margin: 0 0 10px 0;
+            line-height: 1.6;
+        }
+
+        .options {
+            margin-left: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .options label {
+            display: block;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+
+        .wrong {
+            color: red;
+            font-weight: bold;
+        }
+
+        .answer {
+            font-style: italic;
+            color: green;
+            margin-left: 30px;
+        }
+
+        .explanation {
+            color: #000;
+            padding: 10px;
+            border-radius: 10px;
+            background:#E9EAEC;
+            margin-left: 30px;
+            margin-top: 10px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Computer Architecture Quiz</h1>
+
+    <!-- Question 1 -->
+    <div class="question">
+        <p>1. ____ addressing mode is most suitable to change the normal sequence of execution of instructions.</p>
+        <div class="options">
+            <label><input type="radio" name="q1" value="a" onclick="checkAnswer('q1', 'a', this)"> a) Relative</label>
+            <label><input type="radio" name="q1" value="b" onclick="checkAnswer('q1', 'a', this)"> b) Indirect</label>
+            <label><input type="radio" name="q1" value="c" onclick="checkAnswer('q1', 'a', this)"> c) Index with Offset</label>
+            <label><input type="radio" name="q1" value="d" onclick="checkAnswer('q1', 'a', this)"> d) Immediate</label>
+        </div>
+        <p class="result"></p>
+        <p class="answer" style="display:none;">Answer : A) Relative</p>
+        <p class="explanation" style="display: none;"><b>Explanation :</b> The relative addressing mode is used for branching and can alter the normal execution flow by specifying an address relative to the current instruction.</p>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question">
+        <p>2. Which of the following is not a valid addressing mode?</p>
+        <div class="options">
+            <label><input type="radio" name="q2" value="a" onclick="checkAnswer('q2', 'd', this)"> a) Register</label>
+            <label><input type="radio" name="q2" value="b" onclick="checkAnswer('q2', 'd', this)"> b) Absolute</label>
+            <label><input type="radio" name="q2" value="c" onclick="checkAnswer('q2', 'd', this)"> c) Immediate</label>
+            <label><input type="radio" name="q2" value="d" onclick="checkAnswer('q2', 'd', this)"> d) Floating-Point</label>
+        </div>
+        <p class="result"></p>
+        <p class="answer" style="display: none;">Answer: D) Floating-Point</p>
+        <p class="explanation" style="display: none;"><b>Explanation :</b> Floating-Point is not an addressing mode but rather a data type. Register, Absolute, and Immediate are valid addressing modes.</p>
+    </div>
+
+    <script>
+        function checkAnswer(questionName, correctOption, selectedOption) {
+            const options = document.querySelectorAll(`input[name="${questionName}"]`);
+            const resultElement = selectedOption.closest('.question').querySelector('.result');
+            const correctAnswerElement = selectedOption.closest('.question').querySelector('.answer');
+            const explanationElement = selectedOption.closest('.question').querySelector('.explanation');
+            let stauts = 0;
+
+            // Disable all options after selection and check the answer
+            options.forEach(option => {
+                option.disabled = true; // Disable all options after selection
+                const optionLabel = option.parentElement;
+
+                // Remove any previously applied classes
+                optionLabel.classList.remove('correct', 'wrong');
+            });
+
+            // If the selected option is correct, highlight it as correct
+            if (selectedOption.value === correctOption) {
+                selectedOption.parentElement.classList.add('correct');
+                stauts = 1;
+            } else {
+                selectedOption.parentElement.classList.add('wrong');
+            }
+
+            // Display the correct answer
+            if (stauts === 1) {
+                correctAnswerElement.style.display = 'none';
+            } else {
+                correctAnswerElement.style.display = 'block';
+            }
+
+            // Display the explanation for both correct and wrong answers
+            explanationElement.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
