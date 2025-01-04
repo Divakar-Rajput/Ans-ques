@@ -63,10 +63,44 @@
             color: #000;
             padding: 10px;
             border-radius: 10px;
-            background:#E9EAEC;
+            background: #E9EAEC;
             margin-left: 30px;
             margin-top: 10px;
             border: 1px solid black;
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                margin: 10px;
+            }
+
+            .question {
+                padding: 10px;
+            }
+
+            .options {
+                margin-left: 0;
+            }
+
+            .answer, .explanation {
+                margin-left: 10px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .question {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .options label {
+                font-size: 14px;
+            }
+
+            .answer, .explanation {
+                font-size: 14px;
+                margin-left: 5px;
+            }
         }
     </style>
 </head>
